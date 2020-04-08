@@ -1,33 +1,79 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
+
+import styled from "@emotion/styled"
+import { css } from "@emotion/core"
+import Logo from "../images/Logo.png"
+
+const NavLink = styled(Link)`
+  color: #222;
+  font-weight: ${props => props.fontWeight || "normal"};
+  padding: 0.25rem;
+  text-decoration: none;
+  color: white;
+  &.current-page {
+    border-bottom: 2px solid #222;
+  }
+`
 
 const Header = ({ siteTitle }) => (
   <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
+    css={css`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    `}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+    <NavLink
+      to="/"
+      css={css`
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+      `}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+      <img
+        src={Logo}
+        css={css`
+          height: 60px;
+          width: 60px;
+        `}
+      />
+      <span
+        css={css`
+          color: black;
+          padding: 1rem;
+        `}
+      >
+        Hong Fonua
+      </span>
+    </NavLink>
+    <nav
+    // css={css`
+    //   margin-top: 0;
+    // `}
+    >
+      <NavLink
+        to="/train"
+        activeClassName="current-page"
+        css={css`
+          padding-right: 3rem;
+        `}
+      >
+        Train
+      </NavLink>
+      <NavLink
+        to="/about"
+        activeClassName="current-page"
+        css={css`
+          margin-right: 2rem;
+          padding: 0 2rem;
+        `}
+      >
+        About
+      </NavLink>
+    </nav>
   </header>
 )
 
